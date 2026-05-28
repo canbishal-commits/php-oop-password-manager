@@ -13,4 +13,18 @@ if(!isset($_SESSION['user_id'])) {
 
 <p>Login Successful</p>
 
-<a href="logout.php">Logout</a>
+<a href="generate_password.php">
+    Generate Password
+</a>
+
+<br><br>
+
+<a href="save_password.php">
+    Save Password
+</a>
+
+<br><br>
+
+<a href="logout.php">
+    Logout
+</a>
