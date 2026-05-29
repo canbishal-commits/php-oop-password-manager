@@ -4,7 +4,7 @@ session_start();
 
 require_once "classes/Database.php";
 require_once "classes/PasswordManager.php";
-
+require_once "classes/Encryption.php";
 $db = new Database();
 $conn = $db->connect();
 
@@ -13,12 +13,20 @@ $passwordManager = new PasswordManager($conn);
 if(isset($_POST['save'])) {
 
     $website = $_POST['website'];
-    $password = $_POST['password'];
+$password = $_POST['password'];
+
+$key = "passwordmanagerkey";
+
+$encryptedPassword =
+    Encryption::encryptPassword(
+        $password,
+        $key
+    );
 
     if($passwordManager->savePassword(
         $_SESSION['user_id'],
         $website,
-        $password
+        $encryptedPassword
     )) {
 
         echo "Password Saved";
